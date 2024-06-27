@@ -128,9 +128,11 @@ function displayData(type, data) {
         headers.forEach(header => {
             if (header === 'Actions') {
                 row += `<td>
-                           <button onclick="getDetails('images', '${item.patientId}')">Get Images</button>
-                           <button onclick="getDetails('studies', '${item.patientId}')">Get Studies</button>
-                           <button onclick="getDetails('series', '${item.patientId}')">Get Series</button>
+                          <div class="action-button">
+                                    <button class="btn btn-primary" onclick="getDetails('images', '${item.patientId}')">Get Images</button>
+                                     <button class="btn btn-secondary" onclick="getDetails('studies', '${item.patientId}')">Get Studies</button>
+                                      <button class="btn btn-success" onclick="getDetails('series', '${item.patientId}')">Get Series</button>
+                                  </div>
                        </td>`;
             } else {
                 row += `<td>${item[header]}</td>`;
@@ -169,38 +171,6 @@ async function getDetails(action, id) {
 
     await fetchDataAndDisplay(url);
     document.getElementById('back-button').style.display = 'block';
-}
-
-/**
- * Displays the detailed data in the table.
- * @param {Array} data - The detailed data to display.
- */
-function displayDetails(data) {
-    const tableHeader = document.getElementById('table-header');
-    const tableBody = document.getElementById('table-body');
-    tableHeader.innerHTML = '';
-    tableBody.innerHTML = '';
-    document.getElementById('data-table').style.display = 'table';
-
-    let headers = Object.keys(data[0]);
-
-    let headerRow = '<tr>';
-    headers.forEach(header => {
-        headerRow += `<th>${header}</th>`;
-    });
-    headerRow += '</tr>';
-    tableHeader.innerHTML = headerRow;
-
-    data.forEach(item => {
-        let row = '<tr>';
-        headers.forEach(header => {
-            row += `<td>${item[header]}</td>`;
-        });
-        row += '</tr>';
-        tableBody.innerHTML += row;
-    });
-
-    currentLevel++;
 }
 
 /**
