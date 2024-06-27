@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div>
+    <select id="entity-select" onchange="handleEntityChange()">
+        <option value="patients">Patient</option>
+        <option value="organizations">Organization</option>
+    </select>
+    <input type="text" id="search-field" placeholder="Search...">
+    <button class="styled-button" onclick="search()">Search</button>
+</div>
+<br/>
+<button id="back-button" class="styled-button" style="display:none;" onclick="goBack()">Back</button>
+<div id="message"></div>
+<div id="loading-overlay" style="display: none;">Loading...</div>
+<table id="data-table">
+    <thead id="table-header"></thead>
+    <tbody id="table-body"></tbody>
+</table>
+<div class="pagination-container">
+    <button id="previous-page-button" class="styled-button" style="display:none;" onclick="goToPreviousPage()">Previous Page</button>
+    <button id="next-page-button" class="styled-button" style="display:none;" onclick="goToNextPage()">Next Page</button>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
